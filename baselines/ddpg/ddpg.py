@@ -125,8 +125,7 @@ def learn(network, env,
     epoch_qs = []
     epoch_episodes = 0
     for epoch in range(nb_epochs):
-        if rank == 0:
-            print("Epoch started:", epoch)
+        print("Epoch started:", epoch)
         for cycle in range(nb_epoch_cycles):
             if rank == 0:
                 print("Cycle started (epoch)", cycle, epoch)

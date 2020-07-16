@@ -213,7 +213,7 @@ def main(args):
     else:
         rank = MPI.COMM_WORLD.Get_rank()
         configure_logger(args.log_path, format_strs=[])
-
+    print("train with rank", rank)
     model, env = train(args, extra_args)
 
     if args.save_path is not None and rank == 0:
@@ -248,4 +248,5 @@ def main(args):
     return model
 
 if __name__ == '__main__':
+    print("main called")
     main(sys.argv)
