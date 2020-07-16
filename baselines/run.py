@@ -75,6 +75,7 @@ def train(args, extra_args):
 
     model = learn(
         env=env,
+        eval_env=env, #Pass eval env
         seed=seed,
         total_timesteps=total_timesteps,
         **alg_kwargs

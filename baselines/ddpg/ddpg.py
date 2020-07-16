@@ -125,7 +125,11 @@ def learn(network, env,
     epoch_qs = []
     epoch_episodes = 0
     for epoch in range(nb_epochs):
+        if rank == 0:
+            print("Epoch started:", epoch)
         for cycle in range(nb_epoch_cycles):
+            if rank == 0:
+                print("Cycle started (epoch)", cycle, epoch)
             # Perform rollouts.
             if nenvs > 1:
                 # if simulating multiple envs in parallel, impossible to reset agent at the end of the episode in each
@@ -260,6 +264,7 @@ def learn(network, env,
             logger.record_tabular(key, combined_stats[key])
 
         if rank == 0:
+            print("Results for process:", rank, "out of processes", mpi_size)
             logger.dump_tabular()
         logger.info('')
         logdir = logger.get_dir()
